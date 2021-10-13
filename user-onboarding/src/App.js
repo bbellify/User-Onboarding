@@ -33,7 +33,6 @@ function App() {
 
   return (
     <div className="App">
-      <h2>Hey</h2>
       <Form 
         teamMembers={teamMembers}
         formValues={formValues}

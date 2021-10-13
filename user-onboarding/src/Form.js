@@ -17,13 +17,7 @@ export default function Form(props) {
 
     return (
         <form className='formContainer'>
-            <div className='formSubmit'>
-                <h2>Add an Account</h2>
-                <button>Submit</button>
-                <div className='formErrors'>
-                    <div>replace this with divs for errors</div>
-                </div>
-            </div>
+            <h2>Add an Account</h2>
             <div className='formInputs'>
                 <h3>Information</h3>
                 <label>First Name
@@ -69,6 +63,12 @@ export default function Form(props) {
                             checked={formValues.termsOfService === true }
                         />
                     </label>
+            </div>
+            <div className='formSubmit'>
+                <div className='formErrors'>
+                    <div>replace this with divs for errors</div>
+                </div>
+                <button>Submit</button>
             </div>
         </form>
     )
