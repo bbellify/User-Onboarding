@@ -27,7 +27,7 @@ const initialFormErrors = {
 
 function App() {
 
-  const [accounts, setAccounts] = useState([]);
+  const [users, setUsers] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true)
@@ -45,15 +45,22 @@ function App() {
   }
 
   const formSubmit = () => {
-    const newAccount = {
+    const newUser = {
       first_name: formValues.first_name.trim(),
       last_name: formValues.last_name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
       termsOfService: formValues.termsOfService,
     }
-    setAccounts([newAccount, ...accounts]);
-    setFormValues(initialFormValues)
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+        console.log(res.data)
+        setUsers([res.data, ...users]);
+      })
+      .catch(err => {
+        console.error(err)
+      })
+      .finally(setFormValues(initialFormValues))
   }
 
   useEffect(() => {
@@ -73,13 +80,8 @@ function App() {
           formErrors={formErrors}
         />
       </div>
-      <div className='accounts'>
-        {accounts.map(account =>
-          <div className='account'>
-            <p>Name: {account.first_name} {account.last_name} </p>
-            <p> Email: {account.email}</p>
-          </div>
-          )}
+      <div className='users'>
+          
       </div>
     </div>
   );
