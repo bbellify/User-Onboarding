@@ -4,10 +4,16 @@ import axios from 'axios'
 
 export default function Form(props) {
     const { 
-        teamMembers, 
         formValues,
-        inputChange
+        inputChange,
+        formSubmit
+
      } = props
+
+     const onSubmit = evt => {
+        evt.preventDefault()
+        formSubmit()
+      }
 
     const onChange = evt => {
         const { name, value, checked, type } = evt.target
@@ -16,7 +22,7 @@ export default function Form(props) {
     }
 
     return (
-        <form className='formContainer'>
+        <form className='formContainer' onSubmit={onSubmit}>
             <h2>Add an Account</h2>
             <div className='formInputs'>
                 <h3>Information</h3>
