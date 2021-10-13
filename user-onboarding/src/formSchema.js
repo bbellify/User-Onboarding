@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 
 const formSchema = yup.object().shape({
-    fist_name: yup
+    first_name: yup
         .string()
         .trim()
         .required('Please add your first name'),
