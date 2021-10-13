@@ -30,7 +30,7 @@ function App() {
   const [accounts, setAccounts] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  // const [disabled, setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(true)
 
   const validate = (name,value) => {
     yup.reach(schema, name)
@@ -52,9 +52,14 @@ function App() {
       password: formValues.password.trim(),
       termsOfService: formValues.termsOfService,
     }
-    setAccounts([newAccount, ...accounts])
+    setAccounts([newAccount, ...accounts]);
+    setFormValues(initialFormValues)
   }
 
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => setDisabled(!valid))
+  }, [formValues])
   
 
   return (
@@ -64,6 +69,8 @@ function App() {
           formValues={formValues}
           inputChange={inputChange}
           formSubmit={formSubmit}
+          disabled={disabled}
+          formErrors={formErrors}
         />
       </div>
       <div className='accounts'>

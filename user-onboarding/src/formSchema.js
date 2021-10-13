@@ -16,10 +16,12 @@ const formSchema = yup.object().shape({
         .required('Please add your email'),
     password: yup
         .string()
-        .required('Please create a password'),
-    // termsOfService: yup
-    //     .boolean(true, 'Please agree to the terms')
-    // ,
+        .required('Please create a password')
+        .min(6, 'Password must be at least 6 characters long'),
+    termsOfService: yup
+        .bool()
+        .oneOf([true], 'Please agree to the terms')
+    ,
 
 })
 

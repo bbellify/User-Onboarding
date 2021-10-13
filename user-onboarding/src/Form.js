@@ -6,7 +6,9 @@ export default function Form(props) {
     const { 
         formValues,
         inputChange,
-        formSubmit
+        formSubmit,
+        disabled,
+        formErrors
 
      } = props
 
@@ -72,9 +74,13 @@ export default function Form(props) {
             </div>
             <div className='formSubmit'>
                 <div className='formErrors'>
-                    <div>replace this with divs for errors</div>
+                    <div>{formErrors.first_name}</div>
+                    <div>{formErrors.last_name}</div>
+                    <div>{formErrors.email}</div>
+                    <div>{formErrors.password}</div>
+                    <div>{formErrors.termsOfService}</div>
                 </div>
-                <button>Submit</button>
+                <button disabled={disabled}>Submit</button>
             </div>
         </form>
     )
