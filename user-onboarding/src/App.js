@@ -54,8 +54,9 @@ function App() {
     }
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data);
         setUsers([res.data, ...users]);
+        // console.log(users)
       })
       .catch(err => {
         console.error(err)
@@ -81,7 +82,11 @@ function App() {
         />
       </div>
       <div className='users'>
-          
+          {users.map(user => {
+            return (
+              <pre>{JSON.stringify(user)}</pre>
+            )
+          })}
       </div>
     </div>
   );
