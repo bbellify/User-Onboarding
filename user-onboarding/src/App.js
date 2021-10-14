@@ -3,9 +3,42 @@ import './App.css';
 import Form from './Form'
 import schema from './formSchema'
 import * as yup from 'yup'
+import styled from 'styled-components'
 
 import axios from 'axios'
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+`
+
+const AppDiv = styled.div`
+  background-color: lightgray;
+  margin: 2%;
+  padding: 2%;
+  width: 100%;
+`
+
+const UsersDiv = styled.div`
+  width: 100%;
+  overflow-wrap: break-all;
+  background-color: lightgray;
+  margin: 2% 0;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+`
+
+const User = styled.pre`
+  overflow-wrap: break-all;
+  text-align: center;
+  font-family: inherit;
+  margin: 0;
+`
 
 const initialFormValues = {
   first_name: '',
@@ -71,8 +104,8 @@ function App() {
   
 
   return (
-    <div className="App">
-      <div className='form'>
+    <Wrapper>
+      <AppDiv className="App">
         <Form 
           formValues={formValues}
           inputChange={inputChange}
@@ -80,15 +113,22 @@ function App() {
           disabled={disabled}
           formErrors={formErrors}
         />
-      </div>
-      <div className='users'>
+      </AppDiv>
+
+      {users.length > 0 &&
+        <UsersDiv className='users'>
+          <h3 style={{ textAlign:'center' }}>Users</h3>
           {users.map(user => {
             return (
-              <pre>{JSON.stringify(user)}</pre>
+              <User>
+                <p>Name: {user.first_name} {user.last_name}</p>
+                <p>Email: {user.email}</p>
+              </User>
             )
           })}
-      </div>
-    </div>
+        </UsersDiv>
+      }
+    </Wrapper>
   );
 }
 

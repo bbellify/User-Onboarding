@@ -1,4 +1,29 @@
 import { React } from 'react'
+import styled from 'styled-components'
+
+const Inputs = styled.div`
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    align-items: space-evenly;
+`
+const Input = styled.input`
+    margin-left: 1%;
+`
+
+const Errors = styled.div`
+    padding: 0;
+    margin: 0;
+`
+const Error = styled.div`
+    color: red;
+    font-weight: bold;
+
+`
+
+const Button = styled.button`
+    margin-top: 2%;
+`
 
 export default function Form(props) {
     const { 
@@ -22,47 +47,47 @@ export default function Form(props) {
     }
 
     return (
-        <form className='formContainer' onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
             <h2>Add an Account</h2>
-            <div className='formInputs'>
+            <Inputs>
                 <h3>Information</h3>
-                <label>First Name
-                <input
+                <label>First Name: 
+                <Input
                     value={formValues.first_name}
                     onChange={onChange}
                     name='first_name'
                     type='text'
                 />
                 </label>
-                <label>Last Name
-                <input
+                <label>Last Name: 
+                <Input
                     value={formValues.last_name}
                     onChange={onChange}
                     name='last_name'
                     type='text'
                 />
                 </label>
-                <label>Email
-                    <input
+                <label>Email:
+                    <Input
                         value={formValues.email}
                         onChange={onChange}
                         name='email'
                         type='text'
                     />
                 </label>
-                <label>Password
-                    <input
+                <label>Password:
+                    <Input
                         value={formValues.password}
                         onChange={onChange}
                         name='password'
                         type='password'
                     />
                 </label>
-            </div>
+            </Inputs>
             <div className='termsOfService'>
                 <h4>Terms of Service</h4>
                     <label>I've read and agreed to the terms:
-                        <input
+                        <Input
                             type='checkbox'
                             name='termsOfService'
                             onChange={onChange}
@@ -71,14 +96,14 @@ export default function Form(props) {
                     </label>
             </div>
             <div className='formSubmit'>
-                <div className='formErrors'>
-                    <div>{formErrors.first_name}</div>
-                    <div>{formErrors.last_name}</div>
-                    <div>{formErrors.email}</div>
-                    <div>{formErrors.password}</div>
-                    <div>{formErrors.termsOfService}</div>
-                </div>
-                <button disabled={disabled}>Submit</button>
+                <Errors>
+                    <Error>{formErrors.first_name}</Error>
+                    <Error>{formErrors.last_name}</Error>
+                    <Error>{formErrors.email}</Error>
+                    <Error>{formErrors.password}</Error>
+                    <Error>{formErrors.termsOfService}</Error>
+                </Errors>
+                <Button disabled={disabled}>Submit</Button>
             </div>
         </form>
     )
