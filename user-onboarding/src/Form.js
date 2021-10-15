@@ -96,7 +96,7 @@ export default function Form(props) {
                     </label>
             </div>
             <div className='formSubmit'>
-                <Errors>
+                <Errors className='errors'>
                     <Error>{formErrors.first_name}</Error>
                     <Error>{formErrors.last_name}</Error>
                     <Error>{formErrors.email}</Error>
